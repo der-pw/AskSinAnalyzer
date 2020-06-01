@@ -11,7 +11,15 @@
 #include <Device.h>
 #include <Register.h>
 
+#ifdef USE_OLED
 #include "Ssd1306.h"  // comment out if you use a 0.91" 128x32 OLED display
+#endif
+
+#ifdef USE_LED_PIN_8
+#define STATUS_LED 8
+#else
+#define STATUS_LED 4
+#endif
 
 #ifdef SSD1306_H_
 #define PEAK_THRESHOLD 5 // count the RSSI Polls for the peak threshold
@@ -33,7 +41,7 @@ const struct DeviceInfo PROGMEM devinfo = {
   {0x00, 0x00}            // Info Bytes
 };
 
-typedef AskSin<StatusLed<4>, NoBattery, Radio<LibSPI<10>, 2>> HalType;
+typedef AskSin<StatusLed<STATUS_LED>, NoBattery, Radio<LibSPI<10>, 2>> HalType;
 
 class SnifferDevice : public Device<HalType, DefList0>, Alarm {
   DefList0 l0;

@@ -1,6 +1,6 @@
 # AskSinSniffer328P
 
-Sketch für den Arduino (Pro Mini), um die Telegramme zu sniffen.
+Sketch für den Arduino (Pro Mini, Nano), um die Telegramme zu sniffen.
 
 ## Erweiterung um die Möglichkeit Anzeige des aktuellen Signalpegel
 
@@ -15,11 +15,11 @@ Es gibt verschiedene Möglichkeiten, den Sketch zu flashen:
 
 ### Arduino IDE
 
-Benötigte Bibliotheken: AskSinPP, Low-Power, EnableInterrupt
+Benötigte Bibliotheken: AskSinPP, Low-Power, EnableInterrupt. Ggf. Adafruit GFX Library und Adafruit SSD1306 für das OLED.
 
 ### avrdude
 
-Direktes Flashen der HEX-Datei über avrdude:
+Direktes Flashen der HEX-Datei über avrdude für einen 328P:
 ```bash
 avrdude -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:AskSinSniffer328P.hex:i
 ```
@@ -31,12 +31,19 @@ Dem Projekt liegt eine `platformio.ini` bei.
 Um die Bibliotheken zu laden, den Sketch zu kompilieren und hochzuladen, reicht ein Command:
 
 ```bash
-platformio run -t upload
+# Für Arduino Pro-Mini (328P)
+pio run -e pro8MHzatmega328 -t upload
+
+# Für Ardino Nano (zB AskSin-Analyzer-XS PCB von TomMajor)
+pio run -e nano -t upload
+
+# Für Arduino Nano mit OLED-Display
+pio run -e nano-oled -t upload
 ```
 
 ```bash
 # Serial monitor
-platformio device monitor
+pio device monitor
 ```
 
 
