@@ -1,10 +1,7 @@
-# AskSinSniffer328P
-
-## Achtung:
+# Achtung:
 Das Projekt liegt nun unter: https://github.com/psi-4ward/AskSinAnalyzer-Sniffer
 
-
-  
+## AskSinSniffer328P
 
 Sketch für den Arduino (Pro Mini, Nano), um die Telegramme zu sniffen.
 
